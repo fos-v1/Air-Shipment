@@ -34,7 +34,7 @@ paths:
           schema:
             type: string
           description: UserName as configured in the corresponding branch in Freightoscope.
-          example: FOS_Connect
+          example: TEST_USERNAME
         - in: query
           name: Password
           required: true
@@ -42,7 +42,7 @@ paths:
             type: string
             format: password
           description: Password as configured in the corresponding branch in Freightoscope.
-          example: Zhypility@123
+          example: TEST_PASSWORD
         - in: query
           name: CompanyId
           required: true
@@ -105,7 +105,7 @@ paths:
 #          schema:
 #            type: string
 #          description: Application user name.
-#          example: FOS_Connect
+#          example: TEST_USERNAME
 #        - in: query
 #          name: Password
 #          required: true
@@ -113,7 +113,7 @@ paths:
 #            type: string
 #            format: password
 #          description: Application password.
-#          example: Zhypility@123
+#          example: TEST_PASSWORD
 #        - in: query
 #          name: CompanyId
 #          required: true
@@ -135,11 +135,11 @@ paths:
               properties:
                 UserName:
                   type: string
-                  example: Sahil_Royal_Chembur     
+                  example: TEST_USERNAME     
                   description: UserName as configured in the corresponding branch in Freightoscope. 
                 Password:
                   type: string  
-                  example: "9967"
+                  example: TEST_PASSWORD
                   description: Password as configured in the corresponding branch in Freightoscope.
                 CompanyId:
                   type: integer
@@ -157,8 +157,8 @@ paths:
               Air:
                 summary: Air shipment request
                 value:
-                  UserName: Sahil_Royal_Chembur
-                  Password: "9967"
+                  UserName: TEST_USERNAME
+                  Password: TEST_PASSWORD
                   CompanyId: 29780
                   shipments:
                     - General:
@@ -168,7 +168,7 @@ paths:
                         ShipmentType: Charter
                         ReferenceNumber: ''
                         IsDomestic: false
-                        ShipmentNumber: SAHIL-POSTMAN-SHPT-40661
+                        ShipmentNumber: TEST_SHPT_01
                         AWBType: null
                         ShipmentDate: "2026-03-02"
                         DeliveryDate: "2026-03-02"
@@ -181,7 +181,7 @@ paths:
                         ShipmentModeType: null
                         ServiceType: Express
                         JobType: Direct
-                        JobNumber: SAHIL-POSTMAN-JOB-6665
+                        JobNumber: TEST_JOB_01
                         ReceiverBranchId: 20415
                       Parties:
                         List:
@@ -267,8 +267,8 @@ paths:
               Sea:
                 summary: Sea shipment request
                 value:
-                  UserName: Sahil_Royal_Chembur
-                  Password: "9967"
+                  UserName: TEST_USERNAME
+                  Password: TEST_PASSWORD
                   CompanyId: 29780
                   Shipments:
                     - general:
@@ -278,7 +278,7 @@ paths:
                         shipmentType: Branch
                         referenceNumber: "12345"
                         isDomestic: false
-                        shipmentNumber: SAHIL-POSTMAN-SHPT-05
+                        shipmentNumber: TEST_SHPT_03
                         awbType: Surrender
                         shipmentDate: "2026-03-26"
                         deliveryDate: "2026-03-27"
@@ -291,7 +291,7 @@ paths:
                         shipmentModeType: null
                         serviceType: Standard
                         jobType: Direct
-                        jobNumber: SAHIL-POSTMAN-JOB-05
+                        jobNumber: TEST_JOB_02
                         receiverBranchId: 20415
                       parties:
                         list:
@@ -314,7 +314,7 @@ paths:
                             zipcode: "400701"
                             state: Maharashtra
                             phone: "09987396339"
-                            email: sahil@testshipper.com
+                            email: test.shipper@example.com
                           - name: originagent International
                             partyType: originagent
                             address1: Unit 501 shipper
@@ -323,7 +323,7 @@ paths:
                             zipcode: "400701"
                             state: Maharashtra
                             phone: "09987396339"
-                            email: sahil@testoriginagent.com
+                            email: test.originagent@example.com
                           - name: customer International
                             partyType: customer
                             address1: Unit 501 shipper
@@ -332,7 +332,7 @@ paths:
                             zipcode: "400701"
                             state: Maharashtra
                             phone: "09987396339"
-                            email: sahil@testcustomer.com
+                            email: test.customer@example.com
                       routing:
                         movementType: Door to Door
                         incoTerm: EXW
@@ -399,8 +399,8 @@ paths:
               Inland:
                 summary: Inland shipment request
                 value:
-                  UserName: Sahil_Royal_Chembur
-                  Password: "9967"
+                  UserName: TEST_USERNAME
+                  Password: TEST_PASSWORD
                   CompanyId: 29780
                   shipments:
                     - General:
@@ -410,7 +410,7 @@ paths:
                         ShipmentType: Charter
                         ReferenceNumber: REF-9876543
                         IsDomestic: false
-                        ShipmentNumber: ROY-2026-0151
+                        ShipmentNumber: TEST_SHPT_04
                         AWBType: null
                         ShipmentDate: "2026-05-28"
                         DeliveryDate: "2026-05-30"
@@ -423,7 +423,7 @@ paths:
                         ShipmentModeType: FTL
                         ServiceType: Express
                         JobType: Direct
-                        JobNumber: ROY/2026/0136
+                        JobNumber: TEST_JOB_03
                         SenderBranchId: 29780
                         ReceiverBranchId: 20415
                       Parties:
@@ -450,7 +450,7 @@ paths:
                             Zipcode: "00000"
                             State: Dubai
                             Phone: "971501234567"
-                          - Name: Royal Logistics Chembur Branch
+                          - Name: Test Logistics Branch
                             PartyType: ORIGINAGENT
                             Email: operations@royallogistics.com
                             Address1: Sion - Trombay Rd, near Chembur
@@ -633,7 +633,7 @@ paths:
           schema:
             type: string
           description: UserName as configured in the corresponding branch in Freightoscope.
-          example: FOS_Connect
+          example: TEST_USERNAME
         - in: query
           name: Password
           required: true
@@ -641,7 +641,7 @@ paths:
             type: string
             format: password
           description: Password as configured in the corresponding branch in Freightoscope.
-          example: Zhypility@123
+          example: TEST_PASSWORD
         - in: query
           name: CompanyId
           required: true
@@ -682,11 +682,11 @@ paths:
                                   ShipmentType:
                                     example: 
                                   ReferenceNumber:
-                                    example: ROY2026-042
+                                    example: TEST_REF_01
                                   IsDomestic:
                                     example: false
                                   ShipmentNumber:
-                                    example: SHP/26/00401
+                                    example: TEST_SHPT_05
                                   AWBType:
                                     example: 
                                   ShipmentDate:
@@ -713,7 +713,7 @@ paths:
                                   JobType:
                                     example: 
                                   JobNumber:
-                                    example: '102'
+                                    example: TEST_JOB_04
                                   SenderCompanyId:
                                     example: 20263  
                               Parties:
@@ -902,7 +902,7 @@ paths:
                 required:
                   - Message
                   - Code           
-  /shipmenttrackingpost:
+  /postshipmenttracking:
     post:
       tags: [Shipment Tracking]
       summary: Post Tracking details of the shipment
@@ -915,7 +915,7 @@ paths:
 #          schema:
 ##            type: string
 #          description: Application user name.
-#          example: FOS_Connect
+#          example: TEST_USERNAME
 ##        - in: query
 #          name: Password
 #          required: true
@@ -923,7 +923,7 @@ paths:
 #            type: string
 #            format: password
 #          description: Application password.
-#          example: Zhypility@123
+#          example: TEST_PASSWORD
 #        - in: query
 #          name: CompanyId
 #          required: true
@@ -945,11 +945,11 @@ paths:
               properties:
                 UserName:
                   type: string
-                  example: Sahil_Royal_Chembur
+                  example: TEST_USERNAME
                   description: UserName as configured in the corresponding branch in Freightoscope.
                 Password:
                   type: string
-                  example: "9967"
+                  example: TEST_PASSWORD
                   description: Password as configured in the corresponding branch in Freightoscope.
 
                 CompanyId:
@@ -971,11 +971,11 @@ paths:
 
                       SenderJobNo:
                         type: string
-                        example: SAHIL-POSTMAN-JOB-6665
+                        example: TEST_JOB_01
 
                       ShipmentNumber:
                         type: string
-                        example: SAHIL-POSTMAN-SHPT-40661
+                        example: TEST_SHPT_01
 
                       EventStatus:
                         type: string
@@ -1042,13 +1042,13 @@ paths:
                                   type: string
                                   example: Import_CASS_Report_Test_final.pdf  
             example:
-              UserName: Sahil_Royal_Chembur
-              Password: "9967"
+              UserName: TEST_USERNAME
+              Password: TEST_PASSWORD
               CompanyId: 29780
               TrackingList:
                 - ReceiverId: 20415
-                  SenderJobNo: SAHIL-POSTMAN-JOB-6665
-                  ShipmentNumber: SAHIL-POSTMAN-SHPT-40661
+                  SenderJobNo: TEST_JOB_01
+                  ShipmentNumber: TEST_SHPT_01
                   EventStatus: DLV
                   EventStatusType: Completed
                   Location: Dubai
@@ -1124,7 +1124,7 @@ paths:
                 required:
                   - Message
                   - Code         
-  /shipmenttracking:
+  /getshipmenttracking:
     get:
       tags: [Shipment Tracking]
       summary: Get Tracking details of the shipment
@@ -1137,7 +1137,7 @@ paths:
           schema:
             type: string
           description: UserName as configured in the corresponding branch in Freightoscope.
-          example: FOS_Connect
+          example: TEST_USERNAME
         - in: query
           name: Password
           required: true
@@ -1145,7 +1145,7 @@ paths:
             type: string
             format: password
           description: Password as configured in the corresponding branch in Freightoscope.
-          example: Zhypility@123
+          example: TEST_PASSWORD
         - in: query
           name: CompanyId
           required: true
@@ -1159,7 +1159,7 @@ paths:
 #          schema:
 #            type: string
 #          Description: Job Number of Shipment Shared by the Sender
-#          example: SHPT-9321   
+#          example: TEST_SHPT_07   
       responses:
         '200':
           description: Tracking data fetched succsessfully
@@ -1260,11 +1260,11 @@ paths:
               properties:
                 UserName:
                   type: string
-                  example: Sahil_Royal_Chembur
+                  example: TEST_USERNAME
                   description: UserName as configured in the corresponding branch in Freightoscope.
                 Password:
                   type: string  
-                  example: "9967"
+                  example: TEST_PASSWORD
                   description: Password as configured in the corresponding branch in Freightoscope.
                 CompanyId:
                   type: string
@@ -1281,7 +1281,7 @@ paths:
 
                           shipmentNumber:
                             type: string
-                            example: SAHIL-POSTMAN-SHPT-4066
+                            example: TEST_SHPT_02
                             description: Shipment number for which the document is being uploaded.
 
                         #  DocumentMasterId:
@@ -1300,11 +1300,11 @@ paths:
                             description: Name of the uploaded document
                             example: Import_CASS_Report_Test_final.pdf
             example:
-              UserName: Sahil_Royal_Chembur
-              Password: "9967"
+              UserName: TEST_USERNAME
+              Password: TEST_PASSWORD
               CompanyId: "29780"
               DocumentList:
-                - shipmentNumber: SAHIL-POSTMAN-SHPT-4066
+                - shipmentNumber: TEST_SHPT_02
                   DocumentName: Import_CASS_Report_Test_final.pdf
                     
 
@@ -1369,7 +1369,7 @@ paths:
           required: true
           schema:
             type: string
-            example: FOS_Connect
+            example: TEST_USERNAME
             description: UserName as configured in the corresponding branch in Freightoscope.
 
         - in: query
@@ -1378,7 +1378,7 @@ paths:
           schema:
             type: string
             format: password
-            example: Zhypility@123
+            example: TEST_PASSWORD
           description: Password as configured in the corresponding branch in Freightoscope.
 
         - in: query
@@ -1394,7 +1394,7 @@ paths:
           required: true
           schema:
             type: string
-            example: SHPT-9321
+            example: TEST_SHPT_07
             description: Job Number of Shipment Shared by the Sender
 
 
@@ -1416,7 +1416,7 @@ paths:
                       properties:
                         ShipmentNo:
                           type: string
-                          example: ROY-202-0144
+                          example: TEST_SHPT_06
                         DocumentName:
                           type: string
                           example: MAWB
@@ -1426,7 +1426,7 @@ paths:
               example:
                 Message: Documents fetch successfully.
                 Data:
-                  - ShipmentNo: ROY-202-0144
+                  - ShipmentNo: TEST_SHPT_06
                     DocumentName: MAWB
                     DocumentLink: https://fileserve.blob.core.windows.net/internal/test/upload/2418/1599-2587-7462-5958-7810-7784-1180-8536-3320-7078-6021/MAWB
         '403':
@@ -1549,7 +1549,7 @@ components:
               example: false
             ShipmentNumber:
               type: string
-              example: SAHIL-POSTMAN-SHPT-40661
+              example: TEST_SHPT_01
             AWBType:
               type: string
               nullable: true
@@ -1594,7 +1594,7 @@ components:
               example: Direct
             JobNumber:
               type: string
-              example: SAHIL-POSTMAN-JOB-6665
+              example: TEST_JOB_01
             ReceiverBranchId:
               type: integer
               example: 20415
@@ -1882,7 +1882,7 @@ components:
               example: true
             ShipmentNumber:
               type: string
-              example: SHPT2268
+              example: TEST_SHPT_09
             AWB_Type:
               type: string
               example: Express
@@ -1921,7 +1921,7 @@ components:
               example: Direct
             JobNumber:
               type: string
-              example: '1405'
+              example: TEST_JOB_05
             ReceiverCompanyId:
               type: integer
               example: 20263  
@@ -1966,7 +1966,7 @@ components:
                   Email:
                     type: string
                     format: email
-                    example: sahil@ttlogistics.com
+                    example: test.shipper@example.com
         Routing:
           type: object
           properties:
@@ -2214,7 +2214,7 @@ components:
               example: false
             ShipmentNumber:
               type: string
-              example: SHPT2271
+              example: TEST_SHPT_10
             AWB_Type:
               type: string
               example: ''
@@ -2253,7 +2253,7 @@ components:
               example: Direct
             JobNumber:
               type: string
-              example: '1409'
+              example: TEST_JOB_06
             ReceiverCompanyId:
               type: integer
               example: 20263  
@@ -3053,7 +3053,7 @@ components:
 
         ShipmentNumber:
           type: string
-          example: SHPT9321
+          example: TEST_SHPT_08
 
         Event:
           type: object
@@ -3117,7 +3117,7 @@ components:
       properties:
         ShipmentNo:
           type: string
-          example: SHPT-9321
+          example: TEST_SHPT_07
 
         DocumentName:
           type: string

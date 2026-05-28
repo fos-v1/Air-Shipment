@@ -13,7 +13,7 @@
 #          schema:
 #            type: string
 #          description: Application user name.
-#          example: FOS_Connect
+#          example: TEST_USERNAME
 #         - in: query
 #          name: Password
 #         required: true
@@ -21,7 +21,7 @@
 #            type: string
 #            format: password
 #          description: Application password.
-#         example: Zhypility@123
+#         example: TEST_PASSWORD
 #        - in: query
 #          name: CompanyId
 #          required: true
@@ -43,11 +43,11 @@
               properties:
                 UserName:
                   type: string
-                  example: FOS_Connect      
+                  example: TEST_USERNAME      
                   description: UserName as configured in the corresponding branch in Freightoscope.
                 Password:
                   type: string  
-                  example: Zhypility@123
+                  example: TEST_PASSWORD
                   description: Password as configured in the corresponding branch in Freightoscope.
                 CompanyId:
                   type: integer
@@ -136,7 +136,7 @@
 #          schema:
 #            type: string
 #          description: Application user name.#
-#          example: FOS_Connect
+#          example: TEST_USERNAME
 #        - in: query
 #          name: Password
 #          required: true
@@ -144,7 +144,7 @@
 #            type: string
 #            format: password
 #          description: Application password.
-#          example: Zhypility@123
+#          example: TEST_PASSWORD
 #        - in: query
 #          name: CompanyId
 #          required: true
@@ -166,11 +166,11 @@
               properties:
                 UserName:
                   type: string
-                  example: FOS_Connect      
+                  example: TEST_USERNAME      
                   description: UserName as configured in the corresponding branch in Freightoscope.
                 Password:
                   type: string  
-                  example: Zhypility@123
+                  example: TEST_PASSWORD
                   description: Password as configured in the corresponding branch in Freightoscope.
                 CompanyId:
                   type: integer

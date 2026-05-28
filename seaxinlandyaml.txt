@@ -1,0 +1,246 @@
+/shipment/sea:
+    post:
+      tags: [Shipment Sharing]
+      summary: Create a new sea shipment
+      description: >
+        Creates a sea shipment in Freightoscope.
+        Authentication is provided via query parameters in the request URL.
+      operationId: createSeaShipment
+#      parameters:
+#        - in: query
+#          name: UserName
+#          required: true
+#          schema:
+#            type: string
+#          description: Application user name.
+#          example: FOS_Connect
+#         - in: query
+#          name: Password
+#         required: true
+#          schema:
+#            type: string
+#            format: password
+#          description: Application password.
+#         example: Zhypility@123
+#        - in: query
+#          name: CompanyId
+#          required: true
+#          schema:
+#            type: integer
+#          description: Numeric company identifier.
+#          example: 20263
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - UserName
+                - Password
+                - CompanyId
+                - ShipmentData
+              properties:
+                UserName:
+                  type: string
+                  example: FOS_Connect      
+                  description: UserName as configured in the corresponding branch in Freightoscope.
+                Password:
+                  type: string  
+                  example: Zhypility@123
+                  description: Password as configured in the corresponding branch in Freightoscope.
+                CompanyId:
+                  type: integer
+                  example: 20263     
+                  description: Numeric company identifier of the corresponding branch in Freightoscope.
+                ShipmentData:
+                  $ref: '#/components/schemas/Sea Shipment'
+            
+      responses:
+        '200':
+          description: Shipment created Successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    example: Shipment created Successfully
+                  Code:
+                    type: integer
+                    example: 200
+                required:
+                  - Message
+                  - Code
+        '400':
+          description: Shipment creation failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    example: Shipment creation failed
+                  Code:
+                    type: integer
+                    example: 400
+                required:
+                  - Message
+                  - Code
+        '403':
+          description: Your company does not have permission to access shared shipments
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    example: Your company does not have permission to access shared shipments
+                  Code:
+                    type: integer
+                    example: 403
+                required:
+                  - Message
+                  - Code      
+        '500':
+          description: Please share Provper validation request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    example: Please share Provper validation request
+                  Code:
+                    type: integer
+                    example: 500
+                required:
+                  - Message
+                  - Code             
+  /shipment/inland:
+    post:
+      tags: [Shipment Sharing]
+      summary: Create a new inland shipment
+      description: >
+        Creates an inland shipment in Freightoscope.
+        Authentication is provided via query parameters in the request URL.
+      operationId: createInlandShipment
+#      parameters:
+#        - in: query
+#          name: UserName
+#          required: true
+#          schema:
+#            type: string
+#          description: Application user name.#
+#          example: FOS_Connect
+#        - in: query
+#          name: Password
+#          required: true
+#          schema:
+#            type: string
+#            format: password
+#          description: Application password.
+#          example: Zhypility@123
+#        - in: query
+#          name: CompanyId
+#          required: true
+#          schema:
+#            type: integer
+#          description: Numeric company identifier.
+#          example: 20263
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - UserName
+                - Password
+                - CompanyId
+                - ShipmentData
+              properties:
+                UserName:
+                  type: string
+                  example: FOS_Connect      
+                  description: UserName as configured in the corresponding branch in Freightoscope.
+                Password:
+                  type: string  
+                  example: Zhypility@123
+                  description: Password as configured in the corresponding branch in Freightoscope.
+                CompanyId:
+                  type: integer
+                  example: 20263     
+                  description: Numeric company identifier of the corresponding branch in Freightoscope.
+                ShipmentData:
+                  $ref: '#/components/schemas/Inland Shipment'
+            
+      responses:
+        '200':
+          description: Shipment created Successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    example: Shipment created Successfully
+                  Code:
+                    type: integer
+                    example: 200
+                required:
+                  - Message
+                  - Code
+        '400':
+          description: Shipment creation failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    example: Shipment creation failed
+                  Code:
+                    type: integer
+                    example: 400
+                required:
+                  - Message
+                  - Code
+        '403':
+          description: Your company does not have permission to access shared shipments
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    example: Your company does not have permission to access shared shipments
+                  Code:
+                    type: integer
+                    example: 403
+                required:
+                  - Message
+                  - Code      
+        '500':
+          description: Please share Provper validation request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    example: Please share Provper validation request
+                  Code:
+                    type: integer
+                    example: 500
+                required:
+                  - Message
+                  - Code

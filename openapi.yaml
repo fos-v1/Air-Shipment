@@ -90,12 +90,12 @@ paths:
                   - Message
                   - Code            
 
-  /shipment/air:
+  /SharedShipmentPost:
     post:
       tags: [Shipment Sharing]
-      summary: Create a new air shipment
+      summary: Create a new shipment
       description: >
-        Creates an air shipment in Freightoscope.
+        Creates an air, sea, or inland shipment in Freightoscope.
         Authentication is provided via query parameters in the request URL.
       operationId: createShipment
 #      parameters:
@@ -131,22 +131,426 @@ paths:
                 - UserName
                 - Password
                 - CompanyId
-                - ShipmentData
+                - shipments
               properties:
                 UserName:
                   type: string
-                  example: FOS_Connect     
+                  example: Sahil_Royal_Chembur     
                   description: UserName as configured in the corresponding branch in Freightoscope. 
                 Password:
                   type: string  
-                  example: Zhypility@123
+                  example: "9967"
                   description: Password as configured in the corresponding branch in Freightoscope.
                 CompanyId:
                   type: integer
-                  example: 20263     
+                  example: 29780     
                   description: Numeric company identifier of the corresponding branch in Freightoscope.
-                ShipmentData:
-                  $ref: '#/components/schemas/Air Shipment'    
+                shipments:
+                  type: array
+                  items:
+                    oneOf:
+                      - $ref: '#/components/schemas/Air Shipment'
+                      - $ref: '#/components/schemas/Sea Shipment'
+                      - $ref: '#/components/schemas/Inland Shipment'
+                  description: Array of shipment objects to be created
+            examples:
+              Air:
+                summary: Air shipment request
+                value:
+                  UserName: Sahil_Royal_Chembur
+                  Password: "9967"
+                  CompanyId: 29780
+                  shipments:
+                    - General:
+                        DocType: Master
+                        ShipmentMode: Air
+                        ShipmentDirection: Import
+                        ShipmentType: Charter
+                        ReferenceNumber: ''
+                        IsDomestic: false
+                        ShipmentNumber: SAHIL-POSTMAN-SHPT-40661
+                        AWBType: null
+                        ShipmentDate: "2026-03-02"
+                        DeliveryDate: "2026-03-02"
+                        Carrier:
+                          Code: BA
+                          Name: British Airways
+                        MAWB: ''
+                        BL: null
+                        CMRNo: null
+                        ShipmentModeType: null
+                        ServiceType: Express
+                        JobType: Direct
+                        JobNumber: SAHIL-POSTMAN-JOB-6665
+                        ReceiverBranchId: 20415
+                      Parties:
+                        List:
+                          - Name: XYZ
+                            PartyType: SHIPPER
+                            Email: null
+                            Address1: 123Dadar, Mumbai
+                            Address2: ''
+                            Address3: null
+                            City: xyzMumbai
+                            Country: IN
+                            Zipcode: "400105"
+                            State: Mah
+                            Phone: ''
+                      Routing:
+                        MovementType: Airport to Airport
+                        IncoTerm: EXW
+                        PickupAddress: PICKUP ADD
+                        PlaceOfReceipt: PLACE OF RECPT
+                        PlaceOfDelivery: PLACE OF DEL
+                        FinalDestination: ''
+                        DeliveryAddress: DEL ADD
+                        TransitTimeString: "001:00:00"
+                        ServiceTerm: null
+                        Flights:
+                          - FromAirport: ORD
+                            ToAirport: LHR
+                            Carrier:
+                              Code: BA
+                              Name: British Airways
+                            FlightNo: BA195
+                            ETD: "2026-03-10T00:00:00"
+                            ETA: "2026-03-11T00:00:00"
+                            ActualDepartureDate: "2026-03-10T00:00:00"
+                            ActualArrivalDate: "2026-03-11T00:00:00"
+                        Voyages: []
+                        Carriages: []
+                      Goods:
+                        List:
+                          - ContainerNo: null
+                            Pcs: 10
+                            PackageType: BX
+                            CommodityType: Covid
+                            RateClass: Q
+                            GrossWeight: 500
+                            GrossWeightUOM: KGS
+                            ChargeableWeight: 1748.63
+                            ChargeableWeightUOM: KGS
+                            Volume: 10.49
+                            VolumeUOM: CBM
+                            SLAC: 54626
+                            CommodityItemNumber: "547896"
+                            Commodity: FOOD STUFF
+                            TruckNumber: null
+                            HSCodes: ["1245345"]
+                            DimensionsUOM: INH
+                            Dimensions:
+                              - WeightUOM: KGS
+                                Pcs: 10
+                                Length: 40
+                                Width: 40
+                                Height: 40
+                                WeightOfOnePiece: 50
+                            MarksAndNumbers: |
+                              Insurance : Yes
+                              Certificate Of Origin : Yes
+                              Commercial Invoice : Yes
+                            GoodsDescription: |
+                              New unused aircraft parts including :
+                              Engine Mount
+                              Fuel Injector
+                              Oil Pump assemblies
+                      ContainerDetails:
+                        List: []
+                      TruckDetails:
+                        List: []
+                      Handling:
+                        SCI: SC
+                        SpecialHandlingCode: ["Cargo Aircraft Only"]
+                        HandlingInformation: HANDINFO
+                        OtherServiceInformation: OSI
+                        OptionalShippingInformation: OSI-2
+              Sea:
+                summary: Sea shipment request
+                value:
+                  UserName: Sahil_Royal_Chembur
+                  Password: "9967"
+                  CompanyId: 29780
+                  Shipments:
+                    - general:
+                        docType: Master
+                        shipmentMode: Sea
+                        shipmentDirection: Export
+                        shipmentType: Branch
+                        referenceNumber: "12345"
+                        isDomestic: false
+                        shipmentNumber: SAHIL-POSTMAN-SHPT-05
+                        awbType: Surrender
+                        shipmentDate: "2026-03-26"
+                        deliveryDate: "2026-03-27"
+                        carrier:
+                          code: MAEU
+                          name: Maersk
+                        mawb: null
+                        bl: MAEU878567482
+                        cmrNo: null
+                        shipmentModeType: null
+                        serviceType: Standard
+                        jobType: Direct
+                        jobNumber: SAHIL-POSTMAN-JOB-05
+                        receiverBranchId: 20415
+                      parties:
+                        list:
+                          - Name: Test Customer Lead 2025
+                            PartyType: SHIPPER
+                            Email: null
+                            Address1: Test Customer Lead 2025Dummy addres
+                            Address2: sTexas, Teaxs, 73301, United States
+                            Address3: null
+                            City: Texas
+                            Country: AL
+                            Zipcode: "73301"
+                            State: Teaxs
+                            Phone: ""
+                          - name: AMCO DMCC
+                            partyType: Shipper
+                            address1: Unit 501 shipper
+                            city: Navi Mumbai
+                            country: India
+                            zipcode: "400701"
+                            state: Maharashtra
+                            phone: "09987396339"
+                            email: sahil@testshipper.com
+                          - name: originagent International
+                            partyType: originagent
+                            address1: Unit 501 shipper
+                            city: Navi Mumbai
+                            country: India
+                            zipcode: "400701"
+                            state: Maharashtra
+                            phone: "09987396339"
+                            email: sahil@testoriginagent.com
+                          - name: customer International
+                            partyType: customer
+                            address1: Unit 501 shipper
+                            city: Navi Mumbai
+                            country: India
+                            zipcode: "400701"
+                            state: Maharashtra
+                            phone: "09987396339"
+                            email: sahil@testcustomer.com
+                      routing:
+                        movementType: Door to Door
+                        incoTerm: EXW
+                        pickupAddress: Mumbai
+                        placeOfReceipt: Mumbai
+                        placeOfDelivery: Bangkok
+                        finalDestination: DXB , ADD
+                        deliveryAddress: BKK
+                        transitTimeString: "00:02:00"
+                        serviceTerm: CFS-CFS
+                        flights: []
+                        Voyages:
+                          - VoyageNo: VOY - 1
+                            Carrier: null
+                            DeparturePort: Jawaharlal Nehru (Nhava Sheva) INNSA / INNHV
+                            ArrivalPort: DUBAI
+                            VesselName: VESS-9876
+                            VesselFlag: IND
+                            IMO: IMO-3434
+                            LloydsNumber: LLOYD-1234
+                            ETD: "2026-03-26T00:00:00"
+                            ETA: "2026-03-27T00:00:00"
+                            ActualDepartureDate: "2026-03-26T00:00:00"
+                            ActualArrivalDate: "2026-02-23T00:00:00"
+                      goods:
+                        list:
+                          - ContainerNo: null
+                            pcs: 10
+                            packageType: BX
+                            commodity: Food Stuff
+                            hscodes: ["12345"]
+                            commodityType: Freight All Kinds
+                            RateClass: null
+                            GrossWeight: 500
+                            GrossWeightUOM: KGS
+                            ChargeableWeight: 1748.63
+                            ChargeableWeightUOM: KGS
+                            Volume: 10.49
+                            VolumeUOM: CBM
+                            SLAC: 12345
+                            CommodityItemNumber: "12345"
+                            DimensionsUOM: Inches
+                            Dimensions:
+                              - WeightUOM: kgs
+                                Pcs: 10
+                                Length: 40
+                                Width: 40
+                                Height: 40
+                                WeightOfOnePiece: 50
+                            MarksAndNumbers: SK12345marks&numbers
+                            GoodsDescription: Goods&Description
+                      ContainerDetails:
+                        List:
+                          - ContainerNo: MAEU1234567
+                            ContainerSize: 20 GOH
+                            CarrierSeal: SEA-1234
+                            CustomSeal: CUS-SEAL-1234
+                            ShipperOwned: true
+                            EmptyPickupType: 0
+                            EmptyPickupPort: null
+                            EmptyPickupTerminal: null
+                            EmptyPickupInstruction: HANDLE WITH CARE
+                      handling: {}
+              Inland:
+                summary: Inland shipment request
+                value:
+                  UserName: Sahil_Royal_Chembur
+                  Password: "9967"
+                  CompanyId: 29780
+                  shipments:
+                    - General:
+                        DocType: Master
+                        ShipmentMode: Inland
+                        ShipmentDirection: Import
+                        ShipmentType: Charter
+                        ReferenceNumber: REF-9876543
+                        IsDomestic: false
+                        ShipmentNumber: ROY-2026-0151
+                        AWBType: null
+                        ShipmentDate: "2026-05-28"
+                        DeliveryDate: "2026-05-30"
+                        Carrier:
+                          Code: MAEU
+                          Name: Maersk
+                        MAWB: null
+                        BL: MAEUIN123456789
+                        CMRNo: CMR123456789
+                        ShipmentModeType: FTL
+                        ServiceType: Express
+                        JobType: Direct
+                        JobNumber: ROY/2026/0136
+                        SenderBranchId: 29780
+                        ReceiverBranchId: 20415
+                      Parties:
+                        List:
+                          - Name: ABC Exports Pvt Ltd
+                            PartyType: SHIPPER
+                            Email: shipper@test.com
+                            Address1: Unit 12, MIDC Industrial Area
+                            Address2: Andheri East
+                            Address3: null
+                            City: Mumbai
+                            Country: IN
+                            Zipcode: "400093"
+                            State: Maharashtra
+                            Phone: "9876543210"
+                          - Name: Global Imports LLC
+                            PartyType: CONSIGNEE
+                            Email: consignee@test.com
+                            Address1: Warehouse 45
+                            Address2: Jebel Ali Free Zone
+                            Address3: null
+                            City: Dubai
+                            Country: AE
+                            Zipcode: "00000"
+                            State: Dubai
+                            Phone: "971501234567"
+                          - Name: Royal Logistics Chembur Branch
+                            PartyType: ORIGINAGENT
+                            Email: operations@royallogistics.com
+                            Address1: Sion - Trombay Rd, near Chembur
+                            Address2: Diamond Garden, Basant Garden
+                            Address3: null
+                            City: Mumbai
+                            Country: IN
+                            Zipcode: "400094"
+                            State: Maharashtra
+                            Phone: "02225252525"
+                          - Name: A Star Trading Co
+                            PartyType: CUSTOMER
+                            Email: customer@test.com
+                            Address1: Business Bay Tower
+                            Address2: Office 302
+                            Address3: null
+                            City: Dubai
+                            Country: AE
+                            Zipcode: "00000"
+                            State: Dubai
+                            Phone: "971509876543"
+                      Routing:
+                        MovementType: Door to Door
+                        IncoTerm: EXW
+                        PickupAddress: |-
+                          Ekanth
+                          Anushaktinagar
+                          Near Chembur Station
+                        PlaceOfReceipt: Mumbai Warehouse
+                        PlaceOfDelivery: Dubai Distribution Center
+                        FinalDestination: Dubai
+                        DeliveryAddress: JAFZA South, Dubai, UAE
+                        TransitTimeString: "002:12:00"
+                        ServiceTerm: null
+                        Flights: []
+                        Voyages: []
+                        Carriages:
+                          - TransportMode: Truck
+                            VehicleNumber: MH04KU8899
+                            DriverName: Ramesh Patil
+                            DriverContact: "9876501234"
+                            PickupDate: "2026-05-28T10:00:00"
+                            DeliveryDate: "2026-05-30T18:00:00"
+                      Goods:
+                        List:
+                          - ContainerNo: MAERU6834823
+                            Pcs: 25
+                            PackageType: BX
+                            CommodityType: General
+                            RateClass: null
+                            GrossWeight: 15000
+                            GrossWeightUOM: KGS
+                            ChargeableWeight: 15000
+                            ChargeableWeightUOM: KGS
+                            Volume: 35
+                            VolumeUOM: CBM
+                            SLAC: 25
+                            CommodityItemNumber: ITEM001
+                            Commodity: Fresh Mangoes
+                            TruckNumber: MH04KU8899
+                            HSCodes: ["08045020"]
+                            DimensionsUOM: CM
+                            Dimensions:
+                              - WeightUOM: KGS
+                                Pcs: 25
+                                Length: 120
+                                Width: 100
+                                Height: 90
+                                WeightOfOnePiece: 600
+                            MarksAndNumbers: |-
+                              Handle With Care
+                              Keep Refrigerated
+                              Fragile Goods
+                            GoodsDescription: Fresh Alphonso mangoes packed in export quality cartons.
+                      ContainerDetails:
+                        List:
+                          - ContainerNo: MAERU6834823
+                            ContainerSize: 20' DRY
+                            CarrierSeal: SEAL908765
+                            CustomSeal: CUST123456
+                            ShipperOwned: false
+                            EmptyPickupType: 0
+                            EmptyPickupPort: Nhava Sheva
+                            EmptyPickupTerminal: JNPT Terminal 1
+                            EmptyPickupInstruction: Collect empty container before 10 AM
+                      TruckDetails:
+                        List:
+                          - TruckNumber: MH04KU8899
+                            DriverName: Ramesh Patil
+                            DriverLicenseNumber: MH1420269988
+                            DriverContact: "9876501234"
+                            TruckType: Container Trailer
+                      Handling:
+                        SCI: GEN
+                        SpecialHandlingCode:
+                          - PER
+                          - COL
+                        HandlingInformation: Maintain temperature between 10-15°C
+                        OtherServiceInformation: Priority delivery required
+                        OptionalShippingInformation: Notify consignee before delivery
             
       responses:
         '200':
@@ -214,252 +618,7 @@ paths:
                   - Message
                   - Code   # Required fields for error response
 
-  /shipment/sea:
-    post:
-      tags: [Shipment Sharing]
-      summary: Create a new sea shipment
-      description: >
-        Creates a sea shipment in Freightoscope.
-        Authentication is provided via query parameters in the request URL.
-      operationId: createSeaShipment
-#      parameters:
-#        - in: query
-#          name: UserName
-#          required: true
-#          schema:
-#            type: string
-#          description: Application user name.
-#          example: FOS_Connect
-#         - in: query
-#          name: Password
-#         required: true
-#          schema:
-#            type: string
-#            format: password
-#          description: Application password.
-#         example: Zhypility@123
-#        - in: query
-#          name: CompanyId
-#          required: true
-#          schema:
-#            type: integer
-#          description: Numeric company identifier.
-#          example: 20263
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - UserName
-                - Password
-                - CompanyId
-                - ShipmentData
-              properties:
-                UserName:
-                  type: string
-                  example: FOS_Connect      
-                  description: UserName as configured in the corresponding branch in Freightoscope.
-                Password:
-                  type: string  
-                  example: Zhypility@123
-                  description: Password as configured in the corresponding branch in Freightoscope.
-                CompanyId:
-                  type: integer
-                  example: 20263     
-                  description: Numeric company identifier of the corresponding branch in Freightoscope.
-                ShipmentData:
-                  $ref: '#/components/schemas/Sea Shipment'
-            
-      responses:
-        '200':
-          description: Shipment created Successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  Message:
-                    type: string
-                    example: Shipment created Successfully
-                  Code:
-                    type: integer
-                    example: 200
-                required:
-                  - Message
-                  - Code
-        '400':
-          description: Shipment creation failed
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  Message:
-                    type: string
-                    example: Shipment creation failed
-                  Code:
-                    type: integer
-                    example: 400
-                required:
-                  - Message
-                  - Code
-        '403':
-          description: Your company does not have permission to access shared shipments
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  Message:
-                    type: string
-                    example: Your company does not have permission to access shared shipments
-                  Code:
-                    type: integer
-                    example: 403
-                required:
-                  - Message
-                  - Code      
-        '500':
-          description: Please share Provper validation request
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  Message:
-                    type: string
-                    example: Please share Provper validation request
-                  Code:
-                    type: integer
-                    example: 500
-                required:
-                  - Message
-                  - Code             
-  /shipment/inland:
-    post:
-      tags: [Shipment Sharing]
-      summary: Create a new inland shipment
-      description: >
-        Creates an inland shipment in Freightoscope.
-        Authentication is provided via query parameters in the request URL.
-      operationId: createInlandShipment
-#      parameters:
-#        - in: query
-#          name: UserName
-#          required: true
-#          schema:
-#            type: string
-#          description: Application user name.#
-#          example: FOS_Connect
-#        - in: query
-#          name: Password
-#          required: true
-#          schema:
-#            type: string
-#            format: password
-#          description: Application password.
-#          example: Zhypility@123
-#        - in: query
-#          name: CompanyId
-#          required: true
-#          schema:
-#            type: integer
-#          description: Numeric company identifier.
-#          example: 20263
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - UserName
-                - Password
-                - CompanyId
-                - ShipmentData
-              properties:
-                UserName:
-                  type: string
-                  example: FOS_Connect      
-                  description: UserName as configured in the corresponding branch in Freightoscope.
-                Password:
-                  type: string  
-                  example: Zhypility@123
-                  description: Password as configured in the corresponding branch in Freightoscope.
-                CompanyId:
-                  type: integer
-                  example: 20263     
-                  description: Numeric company identifier of the corresponding branch in Freightoscope.
-                ShipmentData:
-                  $ref: '#/components/schemas/Inland Shipment'
-            
-      responses:
-        '200':
-          description: Shipment created Successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  Message:
-                    type: string
-                    example: Shipment created Successfully
-                  Code:
-                    type: integer
-                    example: 200
-                required:
-                  - Message
-                  - Code
-        '400':
-          description: Shipment creation failed
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  Message:
-                    type: string
-                    example: Shipment creation failed
-                  Code:
-                    type: integer
-                    example: 400
-                required:
-                  - Message
-                  - Code
-        '403':
-          description: Your company does not have permission to access shared shipments
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  Message:
-                    type: string
-                    example: Your company does not have permission to access shared shipments
-                  Code:
-                    type: integer
-                    example: 403
-                required:
-                  - Message
-                  - Code      
-        '500':
-          description: Please share Provper validation request
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  Message:
-                    type: string
-                    example: Please share Provper validation request
-                  Code:
-                    type: integer
-                    example: 500
-                required:
-                  - Message
-                  - Code             
+               
   /SharedShipment:
     get:
       tags: [Shipment Sharing]
@@ -743,7 +902,7 @@ paths:
                 required:
                   - Message
                   - Code           
-  /shipment/tracking:
+  /shipmenttrackingpost:
     post:
       tags: [Shipment Tracking]
       summary: Post Tracking details of the shipment
@@ -803,13 +962,8 @@ paths:
                   items:
                     type: object
                     required:
-                      - SenderShipmentId
                       - ReceiverId
                     properties:
-
-                      SenderShipmentId:
-                        type: integer
-                        example: 33180
 
                       ReceiverId:
                         type: integer
@@ -817,19 +971,23 @@ paths:
 
                       SenderJobNo:
                         type: string
-                        example: "36"
+                        example: SAHIL-POSTMAN-JOB-6665
+
+                      ShipmentNumber:
+                        type: string
+                        example: SAHIL-POSTMAN-SHPT-40661
 
                       EventStatus:
                         type: string
-                        example: In Transit
+                        example: DLV
 
                       EventStatusType:
                         type: string
-                        example: Movement
+                        example: Completed
 
                       EventStatusDesc:
                         type: string
-                        example: Shipment departed from origin
+                        example: Other Status
 
                       Location:
                         type: string
@@ -883,6 +1041,28 @@ paths:
                                 ClientFileName:
                                   type: string
                                   example: Import_CASS_Report_Test_final.pdf  
+            example:
+              UserName: Sahil_Royal_Chembur
+              Password: "9967"
+              CompanyId: 29780
+              TrackingList:
+                - ReceiverId: 20415
+                  SenderJobNo: SAHIL-POSTMAN-JOB-6665
+                  ShipmentNumber: SAHIL-POSTMAN-SHPT-40661
+                  EventStatus: DLV
+                  EventStatusType: Completed
+                  Location: Dubai
+                  PCS: 5
+                  Weight: 125.50
+                  WeightUOM: KGS
+                  ContainerNo: CONT1234567
+                  VesselName: MSC Aurora
+                  VoyageNo: VY789
+                  VehicleCarrier: Truck
+                  VehicleRefNo: TRK-5566
+                  FlightNo: EK202
+                  EventStatusDesc: Other Status
+                  dockets: []
 
       responses:
         '200':
@@ -944,7 +1124,7 @@ paths:
                 required:
                   - Message
                   - Code         
-
+  /shipmenttracking:
     get:
       tags: [Shipment Tracking]
       summary: Get Tracking details of the shipment
@@ -1076,33 +1256,33 @@ paths:
                 - UserName
                 - Password
                 - CompanyId
-                - ShipmentData
+                - DocumentList
               properties:
                 UserName:
                   type: string
-                  example: FOS_Connect      
+                  example: Sahil_Royal_Chembur
                   description: UserName as configured in the corresponding branch in Freightoscope.
                 Password:
                   type: string  
-                  example: Zhypility@123
+                  example: "9967"
                   description: Password as configured in the corresponding branch in Freightoscope.
                 CompanyId:
-                  type: integer
-                  example: 20263     
+                  type: string
+                  example: "29780"
                   description: Numeric company identifier of the corresponding branch in Freightoscope.
                 DocumentList:
                       type: array
                       items:
                         type: object
                         required:
-                          - ShipmentId
+                          - shipmentNumber
                           - DocumentName
                         properties:
 
-                          ShipmentId:
-                            type: integer
-                            example: 33180
-                            description: Numeric identifier of the shipment for which the document is being uploaded. This ID should correspond to the shipment shared with the company from the sender branch.
+                          shipmentNumber:
+                            type: string
+                            example: SAHIL-POSTMAN-SHPT-4066
+                            description: Shipment number for which the document is being uploaded.
 
                         #  DocumentMasterId:
                         #    type: integer
@@ -1119,7 +1299,13 @@ paths:
                             type: string
                             description: Name of the uploaded document
                             example: Import_CASS_Report_Test_final.pdf
-
+            example:
+              UserName: Sahil_Royal_Chembur
+              Password: "9967"
+              CompanyId: "29780"
+              DocumentList:
+                - shipmentNumber: SAHIL-POSTMAN-SHPT-4066
+                  DocumentName: Import_CASS_Report_Test_final.pdf
                     
 
       responses:
@@ -1218,9 +1404,31 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ShipmentDocument'
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    example: Documents fetch successfully.
+                  Data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        ShipmentNo:
+                          type: string
+                          example: ROY-202-0144
+                        DocumentName:
+                          type: string
+                          example: MAWB
+                        DocumentLink:
+                          type: string
+                          example: https://fileserve.blob.core.windows.net/internal/test/upload/2418/1599-2587-7462-5958-7810-7784-1180-8536-3320-7078-6021/MAWB
+              example:
+                Message: Documents fetch successfully.
+                Data:
+                  - ShipmentNo: ROY-202-0144
+                    DocumentName: MAWB
+                    DocumentLink: https://fileserve.blob.core.windows.net/internal/test/upload/2418/1599-2587-7462-5958-7810-7784-1180-8536-3320-7078-6021/MAWB
         '403':
           description: Your company does not have permission to access shared shipments
           content:
@@ -1320,37 +1528,40 @@ components:
         General:
           type: object
           properties:
-            Doctype:
+            DocType:
               type: string
               example: Master
-              Description: Type of Waybill (Master or House)          
+              description: Type of Waybill (Master or House)          
             ShipmentMode:
               type: string
               example: Air
             ShipmentDirection:
               type: string
-              example: Export
+              example: Import
             ShipmentType:
               type: string
-              example: Branch
+              example: Charter
             ReferenceNumber:
               type: string
               example: ''
             IsDomestic:
               type: boolean
-              example: true
+              example: false
             ShipmentNumber:
               type: string
-              example: SHPT2267
-            AWB_Type:
+              example: SAHIL-POSTMAN-SHPT-40661
+            AWBType:
               type: string
-              example: Master
+              nullable: true
+              example: null
             ShipmentDate:
               type: string
-              example: 19/01/2026
+              format: date
+              example: "2026-03-02"
             DeliveryDate:
               type: string
-              example: 19/01/2026
+              format: date
+              example: "2026-03-02"
             Carrier:
               type: object
               properties:
@@ -1362,16 +1573,19 @@ components:
                   example: British Airways
             MAWB:
               type: string
-              example: 125-28734893
+              example: ''
             BL:
               type: string
-              example: ''
+              nullable: true
+              example: null
             CMRNo:
               type: string
-              example: ''
+              nullable: true
+              example: null
             ShipmentModeType:
               type: string
               nullable: true
+              example: null
             ServiceType:
               type: string
               example: Express
@@ -1380,10 +1594,10 @@ components:
               example: Direct
             JobNumber:
               type: string
-              example: '1405'
-            ReceiverCompanyId:
+              example: SAHIL-POSTMAN-JOB-6665
+            ReceiverBranchId:
               type: integer
-              example: 20263  
+              example: 20415
         Parties:
           type: object
           properties:
@@ -1394,65 +1608,69 @@ components:
                 properties:
                   Name:
                     type: string
-                    example: Brightway International
+                    example: XYZ
                   PartyType:
                     type: string
-                    example: Consignee
-                  Address1:
-                    type: string
-                    example: Unit 501, Millennium Business Park
-                  Address2:
-                    type: string
-                    example: Mhape
-                  Address3:
-                    type: string
-                    example: Road 101
-                  City:
-                    type: string
-                    example: Navi Mumbai
-                  Country:
-                    type: string
-                    example: India
-                  Zipcode:
-                    type: string
-                    example: '400701'
-                  State:
-                    type: string
-                    example: Maharashtra
-                  Phone:
-                    type: string
-                    example: '09987396339'
+                    example: SHIPPER
+                    description: Party type (SHIPPER, CONSIGNEE, ORIGINAGENT, CUSTOMER, etc.)
                   Email:
                     type: string
+                    nullable: true
                     format: email
-                    example: vaibhav@brightways.com
+                    example: null
+                  Address1:
+                    type: string
+                    example: 123Dadar, Mumbai
+                  Address2:
+                    type: string
+                    example: ""
+                  Address3:
+                    type: string
+                    nullable: true
+                    example: null
+                  City:
+                    type: string
+                    example: xyzMumbai
+                  Country:
+                    type: string
+                    example: IN
+                    description: ISO country code
+                  Zipcode:
+                    type: string
+                    example: "400105"
+                  State:
+                    type: string
+                    example: Mah
+                  Phone:
+                    type: string
+                    example: ""
         Routing:
           type: object
           properties:
             MovementType:
               type: string
-              example: Door to Door
+              example: Airport to Airport
             IncoTerm:
               type: string
               example: EXW
             PickupAddress:
               type: string
-              example: Anushaktinagar, Chembur, Mumbai
+              example: PICKUP ADD
             PlaceOfReceipt:
               type: string
-              example: Mumbai
+              example: PLACE OF RECPT
             PlaceOfDelivery:
               type: string
-              example: Bangkok
+              example: PLACE OF DEL
             FinalDestination:
               type: string
               example: ''
             DeliveryAddress:
               type: string
-              example: ChinaTown, Lane 3, BKK
+              example: DEL ADD
             TransitTimeString:
               type: string
-              example: '00:02:00'
+              example: '001:00:00'
             ServiceTerm:
               type: string
               nullable: true
@@ -1463,34 +1681,38 @@ components:
                 properties:
                   FromAirport:
                     type: string
-                    example: BOM
+                    example: ORD
                   ToAirport:
                     type: string
-                    example: BKK
+                    example: LHR
                   Carrier:
                     type: object
                     properties:
                       Code:
                         type: string
-                        example: 6E
+                        example: BA
                       Name:
                         type: string
-                        example: INDIGO
+                        example: British Airways
                   FlightNo:
                     type: string
-                    example: 6E1059
+                    example: BA195
                   ETD:
                     type: string
-                    example: 21/01/2026 00:07:00
+                    format: date-time
+                    example: "2026-03-10T00:00:00"
                   ETA:
                     type: string
-                    example: 21/01/2026 00:11:00
+                    format: date-time
+                    example: "2026-03-11T00:00:00"
                   ActualDepartureDate:
                     type: string
-                    example: 21/01/2026 00:08:00
+                    format: date-time
+                    example: "2026-03-10T00:00:00"
                   ActualArrivalDate:
                     type: string
-                    example: 21/01/2026 00:12:00
+                    format: date-time
+                    example: "2026-03-11T00:00:00"
             Voyages:
               type: array
               example: []
@@ -1507,113 +1729,130 @@ components:
                 properties:
                   ContainerNo:
                     type: string
-                    example: ''
+                    nullable: true
+                    example: null
                   Pcs:
                     type: integer
                     example: 10
                   PackageType:
                     type: string
-                    example: Box
+                    example: BX
                   CommodityType:
                     type: string
-                    example: General
+                    example: Covid
                   RateClass:
                     type: string
-                    example: M - Minimum Charge
+                    example: Q
                   GrossWeight:
                     type: number
                     format: float
-                    example: 50
+                    example: 500
                   GrossWeightUOM:
                     type: string
-                    example: Kgs
+                    example: KGS
                   ChargeableWeight:
                     type: number
                     format: float
-                    example: 50
+                    example: 1748.63
                   ChargeableWeightUOM:
                     type: string
-                    example: Kgs
+                    example: KGS
                   Volume:
                     type: number
                     format: float
-                    example: 3.5
+                    example: 10.49
                   VolumeUOM:
                     type: string
                     example: CBM
                   SLAC:
                     type: integer
-                    example: 57
+                    example: 54626
                   CommodityItemNumber:
                     type: string
-                    example: '8793'
+                    example: "547896"
                   Commodity:
                     type: string
-                    example: Food Stuff
+                    example: FOOD STUFF
                   TruckNumber:
                     type: string
-                    example: ''
+                    nullable: true
+                    example: null
                   HSCodes:
                     type: array
                     items:
-                      type: integer
-                    example: [932192]
+                      type: string
+                    example: ["1245345"]
                   DimensionsUOM:
                     type: string
-                    example: CM
+                    example: INH
                   Dimensions:
                     type: array
                     items:
                       type: object
                       properties:
-                        UOM:
+                        WeightUOM:
                           type: string
-                          example: CM
+                          example: KGS
                         Pcs:
                           type: integer
                           example: 10
                         Length:
                           type: number
-                          example: 10
+                          example: 40
                         Width:
                           type: number
-                          example: 10
+                          example: 40
                         Height:
                           type: number
-                          example: 10
+                          example: 40
                         WeightOfOnePiece:
                           type: number
-                          example: 10
+                          example: 50
                   MarksAndNumbers:
                     type: string
-                    example: 'Insurance: Yes | Certificate Of Origin: Yes | Commercial Invoice:
-                      Yes'
+                    example: |
+                      Insurance : Yes 
+                      Certificate Of Origin : Yes
+                      Commercial Invoice : Yes
                   GoodsDescription:
                     type: string
-                    example: Food Stuff
+                    example: |
+                      New unsued aircraft parts including :
+                      Engine Mount 
+                      Fuel Injector 
+                      Oil Pump assemblies
+        ContainerDetails:
+          type: object
+          properties:
+            List:
+              type: array
+              example: []
+        TruckDetails:
+          type: object
+          properties:
+            List:
+              type: array
+              example: []
         Handling:
           type: object
           properties:
             SCI:
               type: string
-              example: DG
+              example: SC
             SpecialHandlingCode:
               type: array
               items:
                 type: string
-              example: [ICE, PIL, CAO]
+              example: ["Cargo Aircraft Only"]
             HandlingInformation:
               type: string
-              example: DANGEROUS GOODS AS PER ATTACHED DGD. CARGO AIRCRAFT ONLY. HANDLE
-                WITH CARE. KEEP AWAY FROM HEAT SOURCES.
+              example: HANDINFO
             OtherServiceInformation:
               type: string
-              example: OSI/YY SHIPPER DECLARES DG IN COMPLIANCE WITH IATA DGR.
-                TEMPERATURE MAINTAIN 5-25 DEG C.
+              example: OSI
             OptionalShippingInformation:
               type: string
-              example: CARGO REQUIRES PRIOR ARRANGEMENT. ADVANCE NOTIFICATION
-                REQUIRED BEFORE ARRIVAL.
+              example: OSI-2
 
     #SEA SHIPMENT 
     Sea Shipment:
